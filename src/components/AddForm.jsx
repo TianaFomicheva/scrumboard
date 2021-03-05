@@ -21,7 +21,6 @@ function AddForm({categoryId}) {
             text,
             categoryId
         }   
-        console.log(obj)
         dispatch(addTask(obj))     
         setText('');
 

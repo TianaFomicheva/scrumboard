@@ -3,8 +3,8 @@ import {createStore}  from 'redux'
 import tasks  from './reducers/reducer'
 
 
-const persistedState = localStorage.getItem('reduxState') 
-                       ? JSON.parse(localStorage.getItem('reduxState'))
+const persistedState = localStorage.getItem('state') 
+                       ? JSON.parse(localStorage.getItem('state'))
                        : {}
 
 const store = createStore(tasks, persistedState)
