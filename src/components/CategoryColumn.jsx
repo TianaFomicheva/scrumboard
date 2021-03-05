@@ -1,21 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {TodoItem, Button} from './index'
+import {TodoItem,  AddForm} from './index'
+import { useSelector} from 'react-redux';
+
 
 
     
 
 function CategoryColumn({title, categoryId}) {
-  const [todos, setTodos] = React.useState([])
+  const todos = useSelector(({todos})=> todos)
 
-  const onAddTask = (id, text, categoryId)=>{
-    const obj = {
-      id,
-      text,
-      categoryId 
-    }
-    setTodos(obj)
-  }
     return (
         <div>
             <div className="category-title"> {title}</div>
@@ -23,7 +17,9 @@ function CategoryColumn({title, categoryId}) {
               {todos && todos.map(todo=><TodoItem key={todo.text} categoryId={categoryId} text={todo.text}/>)}
 
             </ul>
-            <Button onClick={onAddTask}/>
+
+            <AddForm categoryId={categoryId}/>
+
         </div>
     )
 }

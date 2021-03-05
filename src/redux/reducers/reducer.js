@@ -1,13 +1,22 @@
 const initialState ={
-    tsxt: '""',
-   id: 0,
-   categoryId: null,
+    text: '',
+    id: null,
+    categoryId: null,
 
 }
 
-export default function toDoList(state = initialState, action){
+export default function tasks(state = initialState, action){
     switch(action.type){
-        
+        case "ADD_TASK":{
+            const res = {                                            
+                    id: Date.now(),
+                    text: action.payload.text,
+                    categoryId: action.payload.categoryId
+                }
+                
+                console.log(res)
+                return res  
+            }                                  
         default:
             return state
     }
