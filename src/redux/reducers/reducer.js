@@ -1,40 +1,27 @@
-const initialState ={
+const initialState = {
     text: '',
     id: null,
     categoryId: null,
 
 }
 
-export default function tasks(state = initialState, action){
-    switch(action.type){
-        case "ADD_TASK":{
+export default function tasks(state = initialState, action) {
+    switch (action.type) {
+        case "ADD_TASK": {
             const serializedState = localStorage.getItem('state');
-           
-               const prevTasks = []
-            const newTask = {                                            
-                id: Date.now(),
+            const parsed = serializedState ? JSON.parse(serializedState) : null
+            const newId = parsed ? parsed[parsed.length - 1].id + 1 : 0
+            const newTask = {
+                id: newId,
                 text: action.payload.text,
                 categoryId: action.payload.categoryId
             }
-            console.log(prevTasks)
-            console.log(prevTasks[0])
-            if(serializedState !== null){
-                prevTasks.push(JSON.parse(serializedState))
-            }
-
-            
-
- 
-
-            const res =  (serializedState !== null) ?
+            const res = serializedState ?
                 [...state,
-                 newTask
-                ] : [
                     newTask
-                   ]
-                console.log(res)
-                return res
-            }                                  
+                ] : [newTask]
+            return res
+        }
         default:
             return state
     }
