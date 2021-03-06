@@ -15,14 +15,15 @@ function AddForm({categoryId}) {
         }
         
       };
-    const handleSubmit = (event) => {       
-        event.preventDefault()
+    const handleSubmit = (e) => {       
+        e.preventDefault()
         const obj ={
             text,
             categoryId
         }   
         dispatch(addTask(obj))     
         setText('');
+        toggleVisibility(e)
 
     }
     const handleText = (e) => {
@@ -34,15 +35,6 @@ function AddForm({categoryId}) {
         setVisiblePopup(!visiblePopup);
     };
 
-
-    //   const onAddTask = (id, text, categoryId)=>{
-    //     const obj = {
-    //       id,
-    //       text,
-    //       categoryId 
-    //     }
-    //     setTodos(obj)
-    //   }
 
     return (
         <form className="add-form" onSubmit={handleSubmit} onKeyDown={(e) => checkKeyDown(e)}>

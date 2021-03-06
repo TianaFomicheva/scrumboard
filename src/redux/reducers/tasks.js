@@ -22,7 +22,14 @@ export default function tasks(state = initialState, action) {
                 ] : [newTask]
             return res
         }
-        default:
+        case "SET_TASKS": {
             return state
+        }
+
+        default:{
+            return state
+        }
     }
 }
+
+

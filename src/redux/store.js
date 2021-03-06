@@ -1,6 +1,6 @@
 
 import {createStore}  from 'redux'
-import tasks  from './reducers/reducer'
+import tasks  from './reducers/tasks'
 
 
 const persistedState = localStorage.getItem('state') 

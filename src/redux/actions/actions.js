@@ -4,3 +4,10 @@ export const addTask = payload => {
       payload
     };
   };
+
+
+  export const setTasks = ()=>({
+    type: 'SET_TASKS',
+    
+    })
+   
