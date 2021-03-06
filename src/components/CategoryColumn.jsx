@@ -5,19 +5,23 @@ import {TodoItem,  AddForm} from './index'
 
 
 
+
+
     
 
 function CategoryColumn({title, categoryId, todos}) {
-  console.log(todos)
+  
+
+
     return (
         <div>
             <div className="category-title"> {title}</div>
             <ul>
-              {todos && todos.map((todo)=> <TodoItem key={todo.text} categoryId={todo.categoryId} text={todo.text} /> )}
+              {todos && todos.map((todo)=> <TodoItem key={todo.text} categoryId={todo.categoryId} text={todo.text}/> )}
 
             </ul>
 
-            <AddForm categoryId={categoryId}/>
+            <AddForm categoryId={categoryId} />
 
         </div>
     )
@@ -26,6 +30,7 @@ CategoryColumn.propTypes = {
    title: PropTypes.string,
    categoryId: PropTypes.number,
    todos: PropTypes.array,
+   onAddTask: PropTypes.func,
     
   };
   

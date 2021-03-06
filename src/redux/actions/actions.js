@@ -6,8 +6,9 @@ export const addTask = payload => {
   };
 
 
-  export const setTasks = ()=>({
+  export const setTasks = (items)=>({
     type: 'SET_TASKS',
+    payload: items
     
     })
    

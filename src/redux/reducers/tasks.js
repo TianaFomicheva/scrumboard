@@ -1,7 +1,5 @@
 const initialState = {
-    text: '',
-    id: null,
-    categoryId: null,
+    items: []
 
 }
 
@@ -10,17 +8,19 @@ export default function tasks(state = initialState, action) {
         case "ADD_TASK": {
             const serializedState = localStorage.getItem('state');
             const parsed = serializedState ? JSON.parse(serializedState) : null
-            const newId = parsed ? parsed[parsed.length - 1].id + 1 : 0
+            const newId = parsed ? parsed.items[parsed.items.length - 1].id + 1 : 0
             const newTask = {
                 id: newId,
                 text: action.payload.text,
                 categoryId: action.payload.categoryId
             }
             const res = serializedState ?
-                [...state,
+                [...state.items,
                     newTask
                 ] : [newTask]
-            return res
+            const newstate = {}  
+            newstate.items = res  
+            return newstate
         }
         case "SET_TASKS": {
             return state
@@ -31,5 +31,4 @@ export default function tasks(state = initialState, action) {
         }
     }
 }
-
 
