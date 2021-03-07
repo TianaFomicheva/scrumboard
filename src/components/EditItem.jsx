@@ -4,9 +4,9 @@ import {  useDispatch } from 'react-redux';
 import {editTask} from '../redux/actions/actions'
 import PropTypes from 'prop-types'
 
-function EditItem({id, visibleEdit, categoryId}) {
+function EditItem({id, text, visibleEdit}) {
     const dispatch = useDispatch()
-    const [text, setText] = React.useState('')
+    const [newText, setNewText] = React.useState(text)
     const checkKeyDown = (e) => {
         if (e.code === 'Enter') 
         {e.preventDefault();
@@ -17,24 +17,22 @@ function EditItem({id, visibleEdit, categoryId}) {
       const handleEdit = (e) => {       
         e.preventDefault()
         const obj ={
-            text,
-            categoryId,
+            text: newText,
             id
         }   
         dispatch(editTask(obj))     
-        setText('');
-        
-
+        setNewText('');
+              
     }
     const handleText = (e) => {
-        setText(e.target.value)
+        setNewText(e.target.value)
     }
 
     return (
         <form className="add-form" onSubmit={handleEdit} onKeyDown={(e) => checkKeyDown(e)}>
             
             {visibleEdit &&
-                (<div><TextField  value={text} onChange={handleText} /> 
+                (<div><TextField  value={newText} onChange={handleText} /> 
            <button type="submit">Сохранить</button></div>)}
 
 
@@ -47,6 +45,8 @@ EditItem.propTypes = {
     visibleEdit: PropTypes.bool,
     id: PropTypes.number,
     categoryId: PropTypes.number,
+    text: PropTypes.string,
+
 
 };
 

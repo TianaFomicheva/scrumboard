@@ -18,15 +18,22 @@ export default function tasks(state = initialState, action) {
                 [...state.items,
                     newTask
                 ] : [newTask]
-            const newstate = {}  
-            newstate.items = res  
+            const newstate = {}
+            newstate.items = res
+            return newstate
+        }
+        case "EDIT_TASK": {
+            state.items.map(task => { if (task.id == action.payload.id) { task.text = action.payload.text } })
+            const res = [...state.items]
+            const newstate = {}
+            newstate.items = res
             return newstate
         }
         case "SET_TASKS": {
             return state
         }
 
-        default:{
+        default: {
             return state
         }
     }

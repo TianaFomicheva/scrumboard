@@ -17,7 +17,7 @@ function TodoItem({text, id}) {
 
         <div className="task-card" onClick={onUpdate}>
             <p>{id} {text} </p><div onClick={handleVisibleEdit}>Edit</div>
-            <EditItem visibleEdit={visibleEdit}/>
+            <EditItem visibleEdit={visibleEdit} text={text} id={id}/>
         </div>
     )
 }

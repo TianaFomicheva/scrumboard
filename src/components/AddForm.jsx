@@ -14,7 +14,7 @@ function AddForm({categoryId}) {
             handleSubmit(e)            
         }
         
-      };
+      }
     const handleSubmit = (e) => {       
         e.preventDefault()
         const obj ={

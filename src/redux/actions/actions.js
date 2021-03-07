@@ -6,7 +6,7 @@ export const addTask = payload => {
   };
 export const editTask = payload => {
     return {
-      type: "ADD_TASK",
+      type: "EDIT_TASK",
       payload
     };
   };
