@@ -17,7 +17,7 @@ function CategoryColumn({title, categoryId, todos}) {
         <div>
             <div className="category-title"> {title}</div>
             <ul>
-              {todos && todos.map((todo)=> <TodoItem key={todo.text} categoryId={todo.categoryId} text={todo.text}/> )}
+              {todos && todos.map((todo)=> <TodoItem key={todo.text} id={todo.id} text={todo.text} /> )}
 
             </ul>
 
@@ -31,6 +31,7 @@ CategoryColumn.propTypes = {
    categoryId: PropTypes.number,
    todos: PropTypes.array,
    onAddTask: PropTypes.func,
+
     
   };
   
