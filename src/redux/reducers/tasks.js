@@ -7,7 +7,7 @@ const initialState = {
 export default function tasks(state = initialState, action) {
     switch (action.type) {
         case "ADD_TASK": {
-            const serializedState = localStorage.getItem('state');
+            const serializedState = localStorage.getItem('state')
             const parsed = serializedState ? JSON.parse(serializedState) : null
             const newId = (parsed && parsed.items.length>0) ? parsed.items[parsed.items.length - 1].id + 1 : 0
             const newTask = {
@@ -38,8 +38,8 @@ export default function tasks(state = initialState, action) {
             return newstate
         }
         case "REMOVE_TASK": {
-            console.log(action.payload.id)
             const oldItems = state.items
+            console.log(action.payload.id)
             const notDeleted = oldItems.filter(task => task.id !== action.payload.id )
             console.log(notDeleted)
             const newstate = {}
@@ -47,6 +47,9 @@ export default function tasks(state = initialState, action) {
             return {...state,
             items:notDeleted
                 }
+            // return {
+            // items:notDeleted
+            //     }
 
         }
         case "SET_TASKS": {

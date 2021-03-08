@@ -3,26 +3,38 @@
     margin: 0 auto
 
 
-.task
-    &-card
-        border: 1px  solid #ddd
-        margin: 20px
-        padding: 20px
-        text-align: left
-        margin: 0 .4rem .8rem
-        background-color: #fff
-        border: 1px solid rgba(0,0,0,0)
-        -webkit-box-shadow: 0 0 2rem 0 #eee
-        -moz-box-shadow: 0 0 2rem 0 #eee
-        box-shadow: 0 0 2rem 0 #eee
-        -webkit-transition: border-color .4s ease,-webkit-box-shadow .4s ease
-        transition: border-color .4s ease,-webkit-box-shadow .4s ease
-        -o-transition: border-color .4s ease,box-shadow .4s ease
-        -moz-transition: border-color .4s ease,box-shadow .4s ease,-moz-box-shadow .4s ease
-        transition: border-color .4s ease,box-shadow .4s ease
-        transition: border-color .4s ease,box-shadow .4s ease,-webkit-box-shadow .4s ease,-moz-box-shadow .4s ease
+.task-card, .category-title, .filter-form
+    border: 1px  solid #ddd
+    margin: 20px
+    padding: 20px
+    text-align: left
+    margin: 0 .4rem .8rem
+    background-color: #fff
+    border: 1px solid rgba(0,0,0,0)
+    -webkit-box-shadow: 0 0 2rem 0 #eee
+    -moz-box-shadow: 0 0 2rem 0 #eee
+    box-shadow: 0 0 2rem 0 #eee
+    -webkit-transition: border-color .4s ease,-webkit-box-shadow .4s ease
+    transition: border-color .4s ease,-webkit-box-shadow .4s ease
+    -o-transition: border-color .4s ease,box-shadow .4s ease
+    -moz-transition: border-color .4s ease,box-shadow .4s ease,-moz-box-shadow .4s ease
+    transition: border-color .4s ease,box-shadow .4s ease
+    transition: border-color .4s ease,box-shadow .4s ease,-webkit-box-shadow .4s ease,-moz-box-shadow .4s ease
     &-board
         background-color:#807272 
+.category-title
+    font-size: 16px     
+    font-weight: bold       
+.task-item
+        padding-left: 0
 .content
     display: flex
-    justify-content: space-around              
+    justify-content: space-around
+.action-button
+    display: inline-block
+    width: 50%  
+.filter
+    margin: auto 0 auto auto
+    &-form
+        display: flex
+        justify-content: revert

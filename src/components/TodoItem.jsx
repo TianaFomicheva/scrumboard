@@ -1,19 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import EditItem from './EditItem'
-import {  useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux'
 import {removeTask} from '../redux/actions/actions'
 
 function TodoItem({text, id}) {
     const dispatch = useDispatch()
-    const onUpdate = ()=>{
-        
-    }
-    const [visibleEdit, setVisibleEdit] = React.useState(false);
+    
+    const [visibleEdit, setVisibleEdit] = React.useState(false)
 
     const handleVisibleEdit = (e)=>{
         e.preventDefault()
-        setVisibleEdit(!visibleEdit);
+        setVisibleEdit(!visibleEdit)
     }
     const handleDelete =(e)=>{
         e.preventDefault()  
@@ -23,8 +21,8 @@ function TodoItem({text, id}) {
     }
     return (
 
-        <div className="task-card" id={id} onClick={onUpdate}>
-            <p>{id} {text} </p><div onClick={handleVisibleEdit}>Edit</div><div onClick={handleDelete}>Delete</div>
+        <div className="task-card"  >
+            <p>{text} </p><div onClick={handleVisibleEdit} className="action-button">&#9998;</div><div onClick={handleDelete} className="action-button">&#10006;</div>
             <EditItem visibleEdit={visibleEdit} text={text} id={id}/>
         </div>
     )
@@ -34,10 +32,10 @@ TodoItem.propTypes = {
     categoryId: PropTypes.number,
     id: PropTypes.number,
      
-   };
+   }
    
    TodoItem.defaultProps = {
      text: ''
      
-   };
+   }
 export default TodoItem

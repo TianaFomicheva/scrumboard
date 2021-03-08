@@ -18,5 +18,7 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "semi": ["error", "never"],
+       
     }
 };

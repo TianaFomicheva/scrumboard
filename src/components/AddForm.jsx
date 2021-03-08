@@ -1,16 +1,21 @@
 import React from 'react'
-import { TextField } from '@rmwc/textfield';
-import Button from './Button';
+import { TextField } from '@rmwc/textfield'
+import Button from './Button'
 import PropTypes from 'prop-types'
-import {  useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux'
 import {addTask} from '../redux/actions/actions'
 
 function AddForm({categoryId}) {
+    const [visiblePopup, setVisiblePopup] = React.useState(false)
+    const toggleVisibility = (e) => {
+        e.preventDefault()
+        setVisiblePopup(!visiblePopup)
+    }
     const dispatch = useDispatch()
     const [text, setText] = React.useState('')
     const checkKeyDown = (e) => {
         if (e.code === 'Enter') 
-        {e.preventDefault();
+        {e.preventDefault()
             handleSubmit(e)            
         }
         
@@ -22,18 +27,15 @@ function AddForm({categoryId}) {
             categoryId
         }   
         dispatch(addTask(obj))     
-        setText('');
+        setText('')
         toggleVisibility(e)
+       
 
     }
     const handleText = (e) => {
         setText(e.target.value)
     }
-    const [visiblePopup, setVisiblePopup] = React.useState(false);
-    const toggleVisibility = (e) => {
-        e.preventDefault()
-        setVisiblePopup(!visiblePopup);
-    };
+    
 
 
     return (
@@ -51,5 +53,5 @@ AddForm.propTypes = {
     onSubmit: PropTypes.func,
     categoryId: PropTypes.number,
 
-};
+}
 export default AddForm

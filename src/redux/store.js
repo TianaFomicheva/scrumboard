@@ -11,7 +11,7 @@ const store = createStore(tasks, persistedState)
 
 
 store.subscribe(() => {
-    localStorage.setItem('state', JSON.stringify(store.getState()));
+    localStorage.setItem('state', JSON.stringify(store.getState()))
 })
 
 export default store
