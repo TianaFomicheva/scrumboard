@@ -23,7 +23,7 @@ function TodoItem({text, id}) {
     }
     return (
 
-        <div className="task-card" onClick={onUpdate}>
+        <div className="task-card" id={id} onClick={onUpdate}>
             <p>{id} {text} </p><div onClick={handleVisibleEdit}>Edit</div><div onClick={handleDelete}>Delete</div>
             <EditItem visibleEdit={visibleEdit} text={text} id={id}/>
         </div>
