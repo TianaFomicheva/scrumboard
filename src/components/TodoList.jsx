@@ -20,9 +20,9 @@ function TodoList() {
 const finalItems = filtered ? items.filter(it=>it.text.indexOf(filtered) !== -1) : items
     return (
         <div>
-            <div className="header">Scrum</div>
+            <div className="header">Scrum</div> <div onClick={onFilter}>Filter</div>
             <div className="content">
-                <div onClick={onFilter}>Filter</div>
+                
                 {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} todos={(finalItems.filter(t=>t.categoryId == index))} count={(finalItems.filter(t=>t.categoryId == index)).length}/>)}
             </div>
         </div>

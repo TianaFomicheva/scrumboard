@@ -10,6 +10,12 @@ export const editTask = payload => {
       payload
     };
   };
+export const editTaskCategory = payload => {
+    return {
+      type: "EDIT_CATEGORY",
+      payload
+    };
+  };
 
 export const removeTask = id => {
     return {
