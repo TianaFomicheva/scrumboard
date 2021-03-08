@@ -10,7 +10,7 @@ function TodoList() {
 
   const todos = useSelector(tasks=> tasks.items)
 
-  const items = todos ? todos : []
+  const items = (todos.length>0) ? todos : []
 
 
 

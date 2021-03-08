@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import EditItem from './EditItem'
-
+import {  useDispatch } from 'react-redux';
+import {removeTask} from '../redux/actions/actions'
 
 function TodoItem({text, id}) {
+    const dispatch = useDispatch()
     const onUpdate = ()=>{
         
     }
@@ -13,10 +15,16 @@ function TodoItem({text, id}) {
         e.preventDefault()
         setVisibleEdit(!visibleEdit);
     }
+    const handleDelete =(e)=>{
+        e.preventDefault()  
+        dispatch(removeTask(id))     
+              
+    
+    }
     return (
 
         <div className="task-card" onClick={onUpdate}>
-            <p>{id} {text} </p><div onClick={handleVisibleEdit}>Edit</div>
+            <p>{id} {text} </p><div onClick={handleVisibleEdit}>Edit</div><div onClick={handleDelete}>Delete</div>
             <EditItem visibleEdit={visibleEdit} text={text} id={id}/>
         </div>
     )

@@ -11,10 +11,21 @@ export const editTask = payload => {
     };
   };
 
+export const removeTask = id => {
+    return {
+      type: "REMOVE_TASK",
+      payload:{
+        id: id
+      }
+    };
+  };
 
-  export const setTasks = (items)=>({
-    type: 'SET_TASKS',
-    payload: items
+
+
+
+  // export const setTasks = (items)=>({
+  //   type: 'SET_TASKS',
+  //   payload: items
     
-    })
+  //   })
    

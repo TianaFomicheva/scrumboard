@@ -17,7 +17,7 @@ function CategoryColumn({title, categoryId, todos}) {
         <div>
             <div className="category-title"> {title}</div>
             <ul>
-              {todos && todos.map((todo)=> <TodoItem key={todo.text} id={todo.id} text={todo.text} /> )}
+              {todos && todos.map((todo)=> <TodoItem key={todo.id} id={todo.id} text={todo.text} /> )}
 
             </ul>
 
