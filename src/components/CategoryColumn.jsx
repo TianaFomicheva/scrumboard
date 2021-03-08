@@ -2,12 +2,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {TodoItem,  AddForm} from './index'
-// import Draggable from 'react-draggable'
-// import {  useDispatch} from 'react-redux'
-// import {addTask} from '../redux/actions/actions'
-// import {removeTask} from '../redux/actions/actions'
 
+/* Оставляю рабочее поведение Draggable
+import Draggable from 'react-draggable'
+import {  useDispatch} from 'react-redux'
+import {addTask} from '../redux/actions/actions'
+import {removeTask} from '../redux/actions/actions'
 
+*/
 
 
 
@@ -15,31 +17,32 @@ import {TodoItem,  AddForm} from './index'
     
 
 function CategoryColumn({title, categoryId, todos,count }) {
-  // const dispatch = useDispatch()
+  /* рабочие методы Druggable
+  const dispatch = useDispatch()
 
-  // const handleDragStart =(e)=>{
-  //   e.preventDefault()
-  //   e.stopPropagation()
-  // }
+  const handleDragStart =(e)=>{
+    e.preventDefault()
+    e.stopPropagation()
+  }
 
-  // const handleDragEnd =(e)=>{
-  //   e.preventDefault()
-  //   const id = +e.target.closest('.react-draggable').getAttribute('data-id')   
-  //   const text = e.target.closest('.react-draggable').getAttribute('rel')
-  //   const moveWidth = e.target.closest('.react-draggable').style.webkitTransform.split("(")[1].split("px")[0]
-  //   const columnWidth  = document.documentElement.clientWidth / 5
-  //   const newCategoryId = categoryId + Math.round(moveWidth / columnWidth)
+  const handleDragEnd =(e)=>{
+    e.preventDefault()
+    const id = +e.target.closest('.react-draggable').getAttribute('data-id')   
+    const text = e.target.closest('.react-draggable').getAttribute('rel')
+    const moveWidth = e.target.closest('.react-draggable').style.webkitTransform.split("(")[1].split("px")[0]
+    const columnWidth  = document.documentElement.clientWidth / 5
+    const newCategoryId = categoryId + Math.round(moveWidth / columnWidth)
       
-  //   dispatch(removeTask(id)) 
-  //   const obj = {
-  //     text,
-  //     categoryId: newCategoryId
-  //   }       
-  //   dispatch(addTask(obj)) 
-  // }
+    dispatch(removeTask(id)) 
+    const obj = {
+      text,
+      categoryId: newCategoryId
+    }       
+    dispatch(addTask(obj)) 
+  }
 
 
-
+*/
     return (
         <div>
             <div className="category-title"> {title} - {count}</div>
