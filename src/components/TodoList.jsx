@@ -10,16 +10,20 @@ function TodoList() {
 
   const todos = useSelector(tasks=> tasks.items)
 
-  const items = (todos.length>0) ? todos : []
-
-
-
-  console.log(todos)
+  const items = (todos && todos.length>0) ? todos : []
+  const [filtered, setFiltered] = React.useState(false)
+  const onFilter =()=>{
+    setFiltered('hj1')
+  
+}
+ 
+const finalItems = filtered ? items.filter(it=>it.text.indexOf(filtered) !== -1) : items
     return (
         <div>
             <div className="header">Scrum</div>
             <div className="content">
-                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} todos={(items.filter(t=>t.categoryId == index))} />)}
+                <div onClick={onFilter}>Filter</div>
+                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} todos={(finalItems.filter(t=>t.categoryId == index))} count={(finalItems.filter(t=>t.categoryId == index)).length}/>)}
             </div>
         </div>
     )
