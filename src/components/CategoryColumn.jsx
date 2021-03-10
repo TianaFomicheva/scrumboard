@@ -3,12 +3,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {TodoItem,  AddForm} from './index'
 
-
+/*
 import Draggable from 'react-draggable'
 import {  useDispatch} from 'react-redux'
 import {addTask} from '../redux/actions/actions'
 import {removeTask} from '../redux/actions/actions'
-
+*/
 
 
 
@@ -17,7 +17,7 @@ import {removeTask} from '../redux/actions/actions'
     
 
 function CategoryColumn({title, categoryId, todos,count }) {
- 
+ /*
   const dispatch = useDispatch()
 
   const handleDragStart =(e)=>{
@@ -25,11 +25,11 @@ function CategoryColumn({title, categoryId, todos,count }) {
     e.stopPropagation()
   }
 
-  const handleDragEnd =(e)=>{
+  const handleDragEnd =(e, todo)=>{
     e.preventDefault()
-    const id = +e.target.closest('.react-draggable').getAttribute('data-id')   
-    const text = e.target.closest('.react-draggable').getAttribute('rel')
-    const moveWidth = e.target.closest('.react-draggable').style.webkitTransform.split("(")[1].split("px")[0]
+    const id = +todo.node.id.slice(4)     
+    const text = todo.node.children[0].firstChild.innerText
+    const moveWidth = todo.lastX
     const columnWidth  = document.documentElement.clientWidth / 5
     const newCategoryId = categoryId + Math.round(moveWidth / columnWidth)
       
@@ -41,16 +41,16 @@ function CategoryColumn({title, categoryId, todos,count }) {
     dispatch(addTask(obj)) 
   }
 
-
+*/
 
     return (
         <div>
             <div className="category-title"> {title} - {count}</div>
             <ul className="task-item">
               {todos && todos.map((todo)=> 
-              <Draggable key={todo.id}  onDrag={handleDragStart} onStop={handleDragEnd}>
-                <div data-id={todo.id}  key={todo.id}  rel={todo.text}><TodoItem id={todo.id} key={todo.id}  text={todo.text}/></div>
-                  </Draggable>
+              // <Draggable key={todo.id}  onDrag={handleDragStart} onStop={handleDragEnd}>
+                <div id={'item'+todo.id}  key={todo.id}><TodoItem id={todo.id} key={todo.id}  text={todo.text}/></div>
+                 // </Draggable> *
                 )}
 
             </ul>
