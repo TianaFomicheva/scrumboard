@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {TodoItem,  AddForm} from './index'
 
-/*
+/* закомментированный код оставлен для дальнейшего анализа
 import Draggable from 'react-draggable'
 import {  useDispatch} from 'react-redux'
 import {addTask} from '../redux/actions/actions'
