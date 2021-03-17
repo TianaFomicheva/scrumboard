@@ -41,6 +41,10 @@ export default function tasks(state = initialState, action) {
             }
 
         }
+        case "SET_TASKS": {
+            
+            return state
+        }
 
         default: {
             return state

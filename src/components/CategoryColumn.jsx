@@ -2,61 +2,43 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {TodoItem,  AddForm} from './index'
-
-/* закомментированный код оставлен для дальнейшего анализа
-import Draggable from 'react-draggable'
-import {  useDispatch} from 'react-redux'
-import {addTask} from '../redux/actions/actions'
-import {removeTask} from '../redux/actions/actions'
-*/
-
-
+import { useDrop} from 'react-dnd'
+import constants from '../constants.js'
+import {moveTask} from './Motion.js'
 
 
 
     
 
-function CategoryColumn({title, categoryId, todos,count }) {
- /*
-  const dispatch = useDispatch()
+function CategoryColumn({title, categoryId, todos,count}) {
 
-  const handleDragStart =(e)=>{
-    e.preventDefault()
-    e.stopPropagation()
-  }
+// const ref = useRef(null)
 
-  const handleDragEnd =(e, todo)=>{
-    e.preventDefault()
-    const id = +todo.node.id.slice(4)     
-    const text = todo.node.children[0].firstChild.innerText
-    const moveWidth = todo.lastX
-    const columnWidth  = document.documentElement.clientWidth / 5
-    const newCategoryId = categoryId + Math.round(moveWidth / columnWidth)
-      
-    dispatch(removeTask(id)) 
-    const obj = {
-      text,
-      categoryId: newCategoryId
-    }       
-    dispatch(addTask(obj)) 
-  }
+// const [x, y] = taskPosition
+let position = [200,200]
+const [x,y] = position
 
-*/
-
+const [, drop] = useDrop(
+  () => ({
+    accept: constants.CARD,
+    drop: () => moveTask(x, y)
+  }),
+  [x, y]
+)
     return (
-        <div>
+        <div ref={drop}>
+         
             <div className="category-title"> {title} - {count}</div>
             <ul className="task-item">
               {todos && todos.map((todo)=> 
-              // <Draggable key={todo.id}  onDrag={handleDragStart} onStop={handleDragEnd}>
-                <div id={'item'+todo.id}  key={todo.id}><TodoItem id={todo.id} key={todo.id}  text={todo.text}/></div>
-                 // </Draggable> *
+                <div id={'item'+todo.id}  key={todo.id}><TodoItem  id={todo.id} key={todo.id}  text={todo.text}/></div>
+                 
                 )}
 
             </ul>
 
             <AddForm categoryId={categoryId} />
-
+           
         </div>
     )
 }
@@ -66,6 +48,7 @@ CategoryColumn.propTypes = {
    todos: PropTypes.array,
    onAddTask: PropTypes.func,
    count: PropTypes.number,
+   updateTaskColumn: PropTypes.func
 
     
   }
@@ -77,3 +60,4 @@ CategoryColumn.propTypes = {
   }
   
   export default CategoryColumn
+  // export default DropTarget(constants.CARD, listTargetSpec, collect)(CategoryColumn)

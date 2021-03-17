@@ -10,6 +10,12 @@ export const editTask = payload => {
       payload
     }
   }
+export const setTasks = payload => {
+    return {
+      type: "SET_TASKS",
+      payload
+    }
+  }
 
 
 export const removeTask = id => {

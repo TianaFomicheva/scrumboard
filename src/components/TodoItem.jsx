@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import EditItem from './EditItem'
 import { useDispatch } from 'react-redux'
 import { removeTask } from '../redux/actions/actions'
+import constants from '../constants'
+import { useDrag } from 'react-dnd'
 
 function TodoItem({ text, id }) {
+
     const dispatch = useDispatch()
 
     const [visibleEdit, setVisibleEdit] = React.useState(false)
@@ -19,13 +22,26 @@ function TodoItem({ text, id }) {
 
 
     }
-    return (
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: constants.CARD,
+        collect: (monitor) => ({
+          isDragging: !!monitor.isDragging()
+        })
+      }))
 
-        <div className="task-card"  >
+return (
+<div ref={drag}>
+    <div className="task-card" style={{
+        opacity: isDragging ? 0.5 : 1}} >
             <p>{text} </p><div onClick={handleVisibleEdit} className="action-button">&#9998;</div><div onClick={handleDelete} className="action-button">&#10006;</div>
             <EditItem visibleEdit={visibleEdit} text={text} id={id} />
         </div>
-    )
+
+        </div>)
+    
+    
+
+    
 }
 TodoItem.propTypes = {
     text: PropTypes.string,
@@ -39,3 +55,4 @@ TodoItem.defaultProps = {
 
 }
 export default TodoItem
+

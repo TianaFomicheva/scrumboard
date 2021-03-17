@@ -33,6 +33,7 @@ function AddForm({ categoryId }) {
 
     }
     const handleText = (e) => {
+        // setDisableDruggable(true)
         setText(e.target.value)
     }
 
@@ -42,7 +43,7 @@ function AddForm({ categoryId }) {
         <form className="add-form" onSubmit={handleSubmit} onKeyDown={(e) => checkKeyDown(e)}>
             <Button onClick={toggleVisibility} />
             {visiblePopup &&
-                (<div><TextField value={text} onChange={handleText} />
+                (<div><TextField  value={text} onChange={handleText} />
                     <button type="submit">Добавить</button></div>)}
 
 
@@ -52,6 +53,7 @@ function AddForm({ categoryId }) {
 AddForm.propTypes = {
     onSubmit: PropTypes.func,
     categoryId: PropTypes.number,
+    setDisableDruggable: PropTypes.func,
 
 }
 export default AddForm
