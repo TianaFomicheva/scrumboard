@@ -32,7 +32,7 @@ export default function tasks(state = initialState, action) {
         }
         case "EDIT_TASK_CATEGORY": {
             console.log(action.payload)
-            state.items.map(task => { if (task.id == action.payload.id) { console.log(task);task.categoryId = action.payload.categoryId } })
+            state.items.map(task => { if (task.id == action.payload.id) { task.categoryId = action.payload.categoryId } })
             const res = [...state.items]
             const newstate = {}
             newstate.items = res
