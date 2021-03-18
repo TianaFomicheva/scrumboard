@@ -4,7 +4,11 @@ import PropTypes from 'prop-types'
 import {TodoItem,  AddForm} from './index'
 import { useDrop} from 'react-dnd'
 import constants from '../constants.js'
-import {moveTask} from './Motion.js'
+// import {moveTask} from './Motion.js'
+import {editTaskCategory} from '../redux/actions/actions'
+import {  useDispatch} from 'react-redux'
+
+
 
 
 
@@ -12,16 +16,27 @@ import {moveTask} from './Motion.js'
 
 function CategoryColumn({title, categoryId, todos,count}) {
 
-// const ref = useRef(null)
+  const dispatch = useDispatch()
 
-// const [x, y] = taskPosition
-let position = [200,200]
+let position = [categoryId,0]
 const [x,y] = position
 
 const [, drop] = useDrop(
   () => ({
     accept: constants.CARD,
-    drop: () => moveTask(x, y)
+    collect:(monitor) => ({
+      isOver: monitor.isOver(),
+      }),
+    drop: (monitor) => {
+      // moveTask(x, y)
+      const obj = {
+        id: monitor.itemId,
+        text: monitor.itemText,
+        categoryId
+      }       
+      dispatch(editTaskCategory(obj))
+      
+    }
   }),
   [x, y]
 )
@@ -60,4 +75,3 @@ CategoryColumn.propTypes = {
   }
   
   export default CategoryColumn
-  // export default DropTarget(constants.CARD, listTargetSpec, collect)(CategoryColumn)

@@ -10,6 +10,12 @@ export const editTask = payload => {
       payload
     }
   }
+export const editTaskCategory = payload => {
+    return {
+      type: "EDIT_TASK_CATEGORY",
+      payload
+    }
+  }
 export const setTasks = payload => {
     return {
       type: "SET_TASKS",

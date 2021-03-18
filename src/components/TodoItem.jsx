@@ -22,12 +22,19 @@ function TodoItem({ text, id }) {
 
 
     }
-    const [{ isDragging }, drag] = useDrag(() => ({
+    const [{ isDragging}, drag] = useDrag(() => ({
         type: constants.CARD,
+        item: {type: constants.CARD, itemId: id, itemText: text},
         collect: (monitor) => ({
-          isDragging: !!monitor.isDragging()
+          isDragging: !!monitor.isDragging(),
+          item: monitor.getItem()
+          
+
         })
+        
+         
       }))
+      
 
 return (
 <div ref={drag}>
