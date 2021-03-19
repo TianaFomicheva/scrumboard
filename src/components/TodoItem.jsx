@@ -21,19 +21,14 @@ function TodoItem({ text, id }) {
         e.preventDefault()
         dispatch(removeTask(id))
 
-
     }
     const [{ isDragging}, drag] = useDrag(() => ({
         type: constants.CARD,
         item: {type: constants.CARD, itemId: id, itemText: text},
         collect: (monitor) => ({
           isDragging: monitor.isDragging(),
-          item: monitor.getItem()
-          
-
-        })
-        
-         
+          item: monitor.getItem()          
+        })                 
       }))
 
    const handleEditItem = obj=>{

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import {TodoItem,  AddForm} from './index'
 import { useDrop} from 'react-dnd'
 import constants from '../constants.js'
-// import {moveTask} from './Motion.js'
 import {editTaskCategory} from '../redux/actions/tasks'
 import {  useDispatch} from 'react-redux'
 
