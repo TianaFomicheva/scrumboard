@@ -4,11 +4,11 @@ import Filter from './Filter'
 import { useSelector } from 'react-redux'
 import { setTasks } from '../redux/actions/tasks'
 import { useDispatch, connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 
 
-
-function TodoList() {
+function TodoList({filtered}) {
     const dispatch = useDispatch()
     const categoryNames = ['Бэклог', 'Надо сделать', 'В работе', 'Проверка', 'Сделано']
     React.useEffect(() => {
@@ -16,21 +16,16 @@ function TodoList() {
         dispatch(setTasks())
     }, [])
 
-    const todos = useSelector(tasks => tasks.filteredItems ? tasks.filteredItems : tasks.items)
+    const todos = useSelector(tasks =>  tasks.items)
     
 
-    const mapStateToProps = (state, filter) => {
-        return {
-          filterd: state.items.filter(it => it.text.indexOf(filter) !== -1)
-          
-        }
-      }
-      
+    
+    console.log(filtered)  
 
     const items = (todos && todos.length > 0) ? todos : []
-    const handleFiltered = (e, filter) => {
+    const handleFiltered = (e) => {
         e.preventDefault()
-        mapStateToProps(items,filter)
+        mapStateToProps(items)
 
     }
 
@@ -52,6 +47,16 @@ function TodoList() {
         </div>
     )
 }
+const mapStateToProps = (state) => ({
+        
+    filtered: state.items.filter(it => it.text.indexOf('ghk') !== -1)
+    
+  
+})
 
+TodoList.propTypes = {
+    filtered: PropTypes.array,
+}
 const Board = connect(mapStateToProps, null)(TodoList)
 export default Board
+// export default TodoList
