@@ -3,7 +3,7 @@ import CategoryColumn from './CategoryColumn'
 import Filter from './Filter'
 import { useSelector } from 'react-redux'
 import { setTasks } from '../redux/actions/tasks'
-import { useDispatch } from 'react-redux'
+import { useDispatch, connect } from 'react-redux'
 
 
 
@@ -15,13 +15,22 @@ function TodoList() {
 
         dispatch(setTasks())
     }, [])
-    const [filtered, setFiltered] = React.useState(false)
-    const todos = useSelector(tasks => tasks.items)
+
+    const todos = useSelector(tasks => tasks.filteredItems ? tasks.filteredItems : tasks.items)
+    
+
+    const mapStateToProps = (state, filter) => {
+        return {
+          filterd: state.items.filter(it => it.text.indexOf(filter) !== -1)
+          
+        }
+      }
+      
 
     const items = (todos && todos.length > 0) ? todos : []
     const handleFiltered = (e, filter) => {
         e.preventDefault()
-        setFiltered(filter)
+        mapStateToProps(items,filter)
 
     }
 
@@ -31,18 +40,18 @@ function TodoList() {
 
 
 
-    const finalItems = filtered ? items.filter(it => it.text.indexOf(filtered) !== -1) : items
+    // const finalItems = filtered ? items.filter(it => it.text.indexOf(filtered) !== -1) : items
 
     return (
         <div>
             <Filter onFiltered={handleFiltered} />
             <div className="content">
 
-                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} updateTaskColumn={updateTaskColumn} todos={(finalItems.filter(t => t.categoryId == index))} count={(finalItems.filter(t => t.categoryId == index)).length} />)}
+                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} updateTaskColumn={updateTaskColumn} todos={(items.filter(t => t.categoryId == index))} count={(items.filter(t => t.categoryId == index)).length} />)}
             </div>
         </div>
     )
 }
 
-
-export default TodoList
+const Board = connect(mapStateToProps, null)(TodoList)
+export default Board

@@ -1,14 +1,14 @@
 import {createStore}  from 'redux'
-// import tasks  from './reducers/tasks'
-import {rootReducer}  from './reducers'
+import tasks  from './reducers/tasks'
+// import {rootReducer}  from './reducers'
 
 
 
 const persistedState = localStorage.getItem('state') 
                        ? JSON.parse(localStorage.getItem('state'))
                        : {}                    
-const store = createStore(rootReducer, persistedState)
-// const store = createStore(tasks, persistedState)
+// const store = createStore(rootReducer, persistedState)
+const store = createStore(tasks, persistedState)
 
 
 

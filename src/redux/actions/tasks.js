@@ -32,5 +32,13 @@ export const removeTask = id => {
       }
     }
   }
+export const filterTasks = filter => {
+    return {
+      type: "FILTER_TASKS",
+      payload:{
+        filter: filter
+      }
+    }
+  }
 
 

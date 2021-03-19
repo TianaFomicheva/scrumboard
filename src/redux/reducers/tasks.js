@@ -1,5 +1,6 @@
 const initialState = {
     items: [],
+    filteredItems:[]
 
 
 }
@@ -22,6 +23,10 @@ export default function tasks(state = initialState, action) {
         case "EDIT_TASK_CATEGORY": {
             
             return {items: state.items.map(item=> item.id === action.payload.id ? {...item, categoryId: action.payload.categoryId } : item)}
+        }
+        case "FILTER_TASKS": {
+            
+            return {...state, filteredItems: state.items.filter(it => it.text.indexOf(action.payload.filter) !== -1)}
         }
         case "REMOVE_TASK": {
             const oldItems = state.items
