@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import EditItem from './EditItem'
 import { useDispatch } from 'react-redux'
-import { removeTask } from '../redux/actions/actions'
+import { removeTask, editTask } from '../redux/actions/tasks.js'
 import constants from '../constants'
 import { useDrag } from 'react-dnd'
 
@@ -13,6 +13,7 @@ function TodoItem({ text, id }) {
     const [visibleEdit, setVisibleEdit] = React.useState(false)
 
     const handleVisibleEdit = (e) => {
+       
         e.preventDefault()
         setVisibleEdit(!visibleEdit)
     }
@@ -26,7 +27,7 @@ function TodoItem({ text, id }) {
         type: constants.CARD,
         item: {type: constants.CARD, itemId: id, itemText: text},
         collect: (monitor) => ({
-          isDragging: !!monitor.isDragging(),
+          isDragging: monitor.isDragging(),
           item: monitor.getItem()
           
 
@@ -34,6 +35,11 @@ function TodoItem({ text, id }) {
         
          
       }))
+
+   const handleEditItem = obj=>{
+    dispatch(editTask(obj))
+    setVisibleEdit(!visibleEdit)
+   }   
       
 
 return (
@@ -41,7 +47,7 @@ return (
     <div className="task-card" style={{
         opacity: isDragging ? 0.5 : 1}} >
             <p>{text} </p><div onClick={handleVisibleEdit} className="action-button">&#9998;</div><div onClick={handleDelete} className="action-button">&#10006;</div>
-            <EditItem visibleEdit={visibleEdit} text={text} id={id} />
+            <EditItem visibleEdit={visibleEdit} text={text} id={id} editItem={handleEditItem}/>
         </div>
 
         </div>)

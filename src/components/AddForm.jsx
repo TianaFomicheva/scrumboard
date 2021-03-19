@@ -3,7 +3,7 @@ import { TextField } from '@rmwc/textfield'
 import Button from './Button'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-import { addTask } from '../redux/actions/actions'
+import { addTask } from '../redux/actions/tasks'
 
 function AddForm({ categoryId }) {
     const [visiblePopup, setVisiblePopup] = React.useState(false)

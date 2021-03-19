@@ -1,44 +1,35 @@
 import React from 'react'
 import { TextField } from '@rmwc/textfield'
-import { useDispatch } from 'react-redux'
-import { editTask } from '../redux/actions/actions'
 import PropTypes from 'prop-types'
 
-function EditItem({ id, text, visibleEdit }) {
-    const dispatch = useDispatch()
-    const [newText, setNewText] = React.useState(text)
-    const [visibleEditing, setVisibleEditing] = React.useState(true)
+function EditItem({ id, text, visibleEdit, editItem }) {
+    const [newText, setNewText] = React.useState(text)    
     const checkKeyDown = (e) => {
         if (e.code === 'Enter') {
             e.preventDefault()
-            handleEdit(e)
+            submitEdit(e)
         }
 
     }
-    const handleEdit = (e) => {
+    const submitEdit = (e) => {
         e.preventDefault()
         const obj = {
             text: newText,
             id
-        }
-        dispatch(editTask(obj))
-        setNewText('')
-        setVisibleEditing(false)
+        }            
+        editItem(obj)
     }
     const handleText = (e) => {
         setNewText(e.target.value)
-
     }
 
 
     return (
-        <form className="add-form" onSubmit={handleEdit} onKeyDown={(e) => checkKeyDown(e)}>
-
-            {(visibleEdit && visibleEditing) &&
+        <form className="add-form" onSubmit={submitEdit} onKeyDown={(e) => checkKeyDown(e)}>
+            {visibleEdit &&
                 (<div><TextField value={newText} onChange={handleText} />
-                    <button type="submit">Сохранить</button></div>)}
-
-
+                    <button type="submit">Сохранить</button>
+                </div>)}
         </form>
     )
 }
@@ -47,8 +38,8 @@ function EditItem({ id, text, visibleEdit }) {
 EditItem.propTypes = {
     visibleEdit: PropTypes.bool,
     id: PropTypes.number,
-    categoryId: PropTypes.number,
     text: PropTypes.string,
+    editItem: PropTypes.func,
 
 
 }

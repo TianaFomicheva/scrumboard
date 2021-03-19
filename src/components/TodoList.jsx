@@ -2,9 +2,9 @@ import React from 'react'
 import CategoryColumn from './CategoryColumn'
 import Filter from './Filter'
 import { useSelector } from 'react-redux'
-import { setTasks } from '../redux/actions/actions'
+import { setTasks } from '../redux/actions/tasks'
 import { useDispatch } from 'react-redux'
-// import {addTask} from '../redux/actions/actions'
+
 
 
 
