@@ -1,6 +1,7 @@
 const initialState = {
     items: [],
-    filteredItems:[]
+    filtered:[]
+   
 
 
 }
@@ -8,14 +9,17 @@ const initialState = {
 export default function tasks(state = initialState, action) {
     switch (action.type) {
         case "ADD_TASK": {
+            console.log(state)
             const newId = (state.items && state.items.length>0) ? state.items[state.items.length - 1].id + 1 : 0
             const newTask = {
                 id: newId,
                 text: action.payload.text,
                 categoryId: action.payload.categoryId
             }
-
-            return {items: (state.items) ? [...state.items, newTask] : [newTask]} }
+console.log({...state, items: (state.items) ? [...state.items, newTask] : [newTask]})
+            return {...state, items: (state.items) ? [...state.items, newTask] : [newTask]} 
+         
+        }
         case "EDIT_TASK": {
 
             return {items: state.items.map(item=> item.id === action.payload.id ? {...item, text: action.payload.text } : item)}
@@ -25,8 +29,8 @@ export default function tasks(state = initialState, action) {
             return {items: state.items.map(item=> item.id === action.payload.id ? {...item, categoryId: action.payload.categoryId } : item)}
         }
         case "FILTER_TASKS": {
-            
-            return {...state, filteredItems: state.items.filter(it => it.text.indexOf(action.payload.filter) !== -1)}
+            console.log(action.payload.filter)
+            return {...state, filtered: state.items.filter(it => it.text.indexOf(action.payload.filter) !== -1)}
         }
         case "REMOVE_TASK": {
             const oldItems = state.items
@@ -39,10 +43,10 @@ export default function tasks(state = initialState, action) {
             }
 
         }
-        case "SET_TASKS": {
+        // case "SET_TASKS": {
             
-            return state
-        }
+        //     return state
+        // }
 
         default: {
             return state

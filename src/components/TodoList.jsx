@@ -2,36 +2,35 @@ import React from 'react'
 import CategoryColumn from './CategoryColumn'
 import Filter from './Filter'
 import { useSelector } from 'react-redux'
-import { setTasks } from '../redux/actions/tasks'
-import { useDispatch, connect } from 'react-redux'
+import { filterTasks } from '../redux/actions/tasks'
+import { setFilter } from '../redux/actions/filter'
+import { useDispatch} from 'react-redux'
 import PropTypes from 'prop-types'
 
 
 
-function TodoList({filtered}) {
+function TodoList() {
     const dispatch = useDispatch()
     const categoryNames = ['Бэклог', 'Надо сделать', 'В работе', 'Проверка', 'Сделано']
-    React.useEffect(() => {
+    const  {filterVal} = useSelector( ({filter})  => filter)
+    const [filtered, setFiltered] = React.useState(false)
 
-        dispatch(setTasks())
-    }, [])
+React.useEffect(() => {
 
-    const tasks = useSelector(tasks =>  tasks)
+  }, [filterVal])
+
+    const todos = useSelector(tasks => (tasks.tasks.items && tasks.tasks.items.length> 0) ? tasks.tasks.items : [])
+    const fullTodos = useSelector(tasks => tasks)
+    console.log(fullTodos)
+
+
+    const handleFiltered = (filter)=>{
+        setFiltered(filter)
+        dispatch(setFilter(filter))
+        dispatch(filterTasks(filter))
+    }
     console.log(filtered)
-    const [filterTodos, setFilterTodos] = React.useState(tasks.items)
-
-    const handleFiltered = (e, filter) => {
-        e.preventDefault()
-        const filt = mapStateToProps(tasks, filter)
-        setFilterTodos(filt['filtered'])
-     
-     
-
-    }
-console.log(filterTodos)
-    const updateTaskColumn = () => {
-       
-    }
+   
 
 
 
@@ -41,20 +40,15 @@ console.log(filterTodos)
             <Filter onFiltered={handleFiltered} />
             <div className="content">
 
-                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} updateTaskColumn={updateTaskColumn} todos={(filterTodos.filter(t => t.categoryId == index))} count={(filterTodos.filter(t => t.categoryId == index)).length} />)}
+                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName}  todos={(todos.filter(t => t.categoryId == index))} count={(todos.filter(t => t.categoryId == index)).length} />)}
             </div>
         </div>
     )
 }
-function mapStateToProps(state, filter) {
-   const isFilter= (typeof(filter) !== 'object'|| Object.keys(filter).length > 0) ? filter : false   
-    return {filtered: isFilter ? state.items.filter((it) => it['text'].indexOf(filter) !== -1) : state.items}
 
-
-    }
 
 TodoList.propTypes = {
     filtered: PropTypes.array,
 }
-export default connect(mapStateToProps, null)(TodoList)
+export default TodoList
 

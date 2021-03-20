@@ -24,6 +24,7 @@ export const setTasks = payload => {
   }
 
 
+
 export const removeTask = id => {
     return {
       type: "REMOVE_TASK",
@@ -33,6 +34,7 @@ export const removeTask = id => {
     }
   }
 export const filterTasks = filter => {
+  console.log(filter)
     return {
       type: "FILTER_TASKS",
       payload:{
