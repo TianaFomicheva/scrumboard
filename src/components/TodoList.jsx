@@ -14,22 +14,21 @@ function TodoList({filtered}) {
     React.useEffect(() => {
 
         dispatch(setTasks())
-    }, [filtered])
+    }, [])
 
-    const todos = useSelector(tasks =>  tasks.items)
     const tasks = useSelector(tasks =>  tasks)
+    console.log(filtered)
+    const [filterTodos, setFilterTodos] = React.useState(tasks.items)
 
-    
-    
-    const items = (todos && todos.length > 0) ? todos : []
-    const handleFiltered = (e) => {
+    const handleFiltered = (e, filter) => {
         e.preventDefault()
-     const filterState = mapStateToProps(tasks, 'gh')
-     console.log(filterState)
+        const filt = mapStateToProps(tasks, filter)
+        setFilterTodos(filt['filtered'])
+     
      
 
     }
-
+console.log(filterTodos)
     const updateTaskColumn = () => {
        
     }
@@ -42,15 +41,14 @@ function TodoList({filtered}) {
             <Filter onFiltered={handleFiltered} />
             <div className="content">
 
-                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} updateTaskColumn={updateTaskColumn} todos={(items.filter(t => t.categoryId == index))} count={(items.filter(t => t.categoryId == index)).length} />)}
+                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} updateTaskColumn={updateTaskColumn} todos={(filterTodos.filter(t => t.categoryId == index))} count={(filterTodos.filter(t => t.categoryId == index)).length} />)}
             </div>
         </div>
     )
 }
 function mapStateToProps(state, filter) {
-   
-   const props=filter || ''   
-    return {filtered: state.items.filter((it) => it['text'].indexOf(props) !== -1)}
+   const isFilter= (typeof(filter) !== 'object'|| Object.keys(filter).length > 0) ? filter : false   
+    return {filtered: isFilter ? state.items.filter((it) => it['text'].indexOf(filter) !== -1) : state.items}
 
 
     }
@@ -58,6 +56,5 @@ function mapStateToProps(state, filter) {
 TodoList.propTypes = {
     filtered: PropTypes.array,
 }
-const Board = connect(mapStateToProps, null)(TodoList)
-export default Board
-// export default TodoList
+export default connect(mapStateToProps, null)(TodoList)
+

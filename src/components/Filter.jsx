@@ -13,8 +13,8 @@ function Filter({ onFiltered }) {
 
     }
     const onFilter = (e) => {
-        // onFiltered(e, textFilter)
-        onFiltered(e)
+        onFiltered(e, textFilter)
+
 
     }
     const handleText = (e) => {
