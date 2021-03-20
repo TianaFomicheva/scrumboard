@@ -24,8 +24,8 @@ function TodoList({filtered}) {
     const items = (todos && todos.length > 0) ? todos : []
     const handleFiltered = (e) => {
         e.preventDefault()
-     mapStateToProps(tasks, 'gh')
-     console.log(filtered)
+     const filterState = mapStateToProps(tasks, 'gh')
+     console.log(filterState)
      
 
     }
@@ -49,9 +49,7 @@ function TodoList({filtered}) {
 }
 function mapStateToProps(state, filter) {
    
-   const props=filter || ''
-    console.log(state.items.filter((it) => it['text'].indexOf(props) !== -1))
-   
+   const props=filter || ''   
     return {filtered: state.items.filter((it) => it['text'].indexOf(props) !== -1)}
 
 

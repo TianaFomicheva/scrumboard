@@ -6,7 +6,6 @@ import './sass/app.sass'
 import App from './App.js'
 import { observe } from './components/Motion.js'
 observe((taskPosition) =>{
-  console.log(taskPosition)
 ReactDOM.render(
   <Provider store={store} taskPosition={taskPosition}>
     <App />
