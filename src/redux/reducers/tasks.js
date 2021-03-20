@@ -1,22 +1,20 @@
 const initialState = {
     items: [],
-    filtered:[]
-   
-
+    filtered:[]   
 
 }
 
 export default function tasks(state = initialState, action) {
     switch (action.type) {
         case "ADD_TASK": {
-            console.log(state)
             const newId = (state.items && state.items.length>0) ? state.items[state.items.length - 1].id + 1 : 0
             const newTask = {
                 id: newId,
                 text: action.payload.text,
                 categoryId: action.payload.categoryId
             }
-            return {...state, items: (state.items) ? [...state.items, newTask] : [newTask]} 
+
+            return {...state, items: (state.items && state.items.length>0) ? [...state.items, newTask] : [newTask]} 
          
         }
         case "EDIT_TASK": {
@@ -41,8 +39,6 @@ export default function tasks(state = initialState, action) {
             }
 
         }
-
-
         default: {
             return state
         }

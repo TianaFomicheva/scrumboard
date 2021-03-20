@@ -3,35 +3,17 @@ import CategoryColumn from './CategoryColumn'
 import Filter from './Filter'
 import { useSelector } from 'react-redux'
 import { filterTasks } from '../redux/actions/tasks'
-import { setFilter } from '../redux/actions/filter'
 import { useDispatch} from 'react-redux'
 import PropTypes from 'prop-types'
-
-
 
 function TodoList() {
     const dispatch = useDispatch()
     const categoryNames = ['Бэклог', 'Надо сделать', 'В работе', 'Проверка', 'Сделано']
-    const  {filterVal} = useSelector( ({filter})  => filter)
-    // const [filtered, setFiltered] = React.useState(false)
 
-React.useEffect(() => {
-
-  }, [filterVal])
-    const todos = useSelector(tasks => (tasks.tasks.filtered)  ? tasks.tasks.filtered  : ((tasks.tasks.items && tasks.tasks.items.length> 0) ?  tasks.tasks.items:[]))
-
-
-
+      const todos = useSelector(tasks => (tasks.filtered)  ? tasks.filtered  : ((tasks.items && tasks.items.length> 0) ?  tasks.items:[]))
     const handleFiltered = (filter)=>{
-        // setFiltered(filter)
-        dispatch(setFilter(filter))
         dispatch(filterTasks(filter))
-    }
-
-   
-
-
-
+    }   
 
     return (
         <div>
