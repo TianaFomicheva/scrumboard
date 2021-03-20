@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 function Filter({ onFiltered }) {
     
-    const [textFilter, setTextFilter] = React.useState('1')
+    const [textFilter, setTextFilter] = React.useState('')
 
     const checkKeyDown = (e) => {
         if (e.code === 'Enter') {
@@ -15,14 +15,12 @@ function Filter({ onFiltered }) {
     }
     const onFilter = (e) => {
         e.preventDefault()
-        console.log(textFilter)
         onFiltered(textFilter)
 
 
     }
     function handleText(e) {
         return setTextFilter(e.target.value)
-        //  console.log(e.target.value)
     }
     return (
         <form className="filter-form" onSubmit={onFilter} onKeyDown={(e) => checkKeyDown(e)}>

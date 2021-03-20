@@ -16,7 +16,6 @@ export default function tasks(state = initialState, action) {
                 text: action.payload.text,
                 categoryId: action.payload.categoryId
             }
-console.log({...state, items: (state.items) ? [...state.items, newTask] : [newTask]})
             return {...state, items: (state.items) ? [...state.items, newTask] : [newTask]} 
          
         }
@@ -29,7 +28,6 @@ console.log({...state, items: (state.items) ? [...state.items, newTask] : [newTa
             return {items: state.items.map(item=> item.id === action.payload.id ? {...item, categoryId: action.payload.categoryId } : item)}
         }
         case "FILTER_TASKS": {
-            console.log(action.payload.filter)
             return {...state, filtered: state.items.filter(it => it.text.indexOf(action.payload.filter) !== -1)}
         }
         case "REMOVE_TASK": {
@@ -43,10 +41,7 @@ console.log({...state, items: (state.items) ? [...state.items, newTask] : [newTa
             }
 
         }
-        // case "SET_TASKS": {
-            
-        //     return state
-        // }
+
 
         default: {
             return state

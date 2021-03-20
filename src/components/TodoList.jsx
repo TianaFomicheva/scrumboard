@@ -13,23 +13,21 @@ function TodoList() {
     const dispatch = useDispatch()
     const categoryNames = ['Бэклог', 'Надо сделать', 'В работе', 'Проверка', 'Сделано']
     const  {filterVal} = useSelector( ({filter})  => filter)
-    const [filtered, setFiltered] = React.useState(false)
+    // const [filtered, setFiltered] = React.useState(false)
 
 React.useEffect(() => {
 
   }, [filterVal])
+    const todos = useSelector(tasks => (tasks.tasks.filtered)  ? tasks.tasks.filtered  : ((tasks.tasks.items && tasks.tasks.items.length> 0) ?  tasks.tasks.items:[]))
 
-    const todos = useSelector(tasks => (tasks.tasks.items && tasks.tasks.items.length> 0) ? tasks.tasks.items : [])
-    const fullTodos = useSelector(tasks => tasks)
-    console.log(fullTodos)
 
 
     const handleFiltered = (filter)=>{
-        setFiltered(filter)
+        // setFiltered(filter)
         dispatch(setFilter(filter))
         dispatch(filterTasks(filter))
     }
-    console.log(filtered)
+
    
 
 
