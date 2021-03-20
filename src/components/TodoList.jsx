@@ -14,18 +14,19 @@ function TodoList({filtered}) {
     React.useEffect(() => {
 
         dispatch(setTasks())
-    }, [])
+    }, [filtered])
 
     const todos = useSelector(tasks =>  tasks.items)
-    
+    const tasks = useSelector(tasks =>  tasks)
 
     
-    console.log(filtered)  
-
+    
     const items = (todos && todos.length > 0) ? todos : []
     const handleFiltered = (e) => {
         e.preventDefault()
-        mapStateToProps(items)
+     mapStateToProps(tasks, 'gh')
+     console.log(filtered)
+     
 
     }
 
@@ -35,7 +36,6 @@ function TodoList({filtered}) {
 
 
 
-    // const finalItems = filtered ? items.filter(it => it.text.indexOf(filtered) !== -1) : items
 
     return (
         <div>
@@ -47,12 +47,15 @@ function TodoList({filtered}) {
         </div>
     )
 }
-const mapStateToProps = (state) => ({
-        
-    filtered: state.items.filter(it => it.text.indexOf('ghk') !== -1)
-    
-  
-})
+function mapStateToProps(state, filter) {
+   
+   const props=filter || ''
+    console.log(state.items.filter((it) => it['text'].indexOf(props) !== -1))
+   
+    return {filtered: state.items.filter((it) => it['text'].indexOf(props) !== -1)}
+
+
+    }
 
 TodoList.propTypes = {
     filtered: PropTypes.array,
