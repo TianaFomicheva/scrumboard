@@ -27,7 +27,6 @@ const [, drop] = useDrop(
       isOver: monitor.isOver(),
       }),
     drop: (monitor) => {
-      // moveTask(x, y)
       const obj = {
         id: monitor.itemId,
         text: monitor.itemText,
@@ -51,7 +50,7 @@ const [, drop] = useDrop(
 
             </ul>
 
-            <AddForm categoryId={categoryId} />
+            <AddForm categoryId={categoryId}/>
            
         </div>
     )
@@ -62,7 +61,8 @@ CategoryColumn.propTypes = {
    todos: PropTypes.array,
    onAddTask: PropTypes.func,
    count: PropTypes.number,
-   updateTaskColumn: PropTypes.func
+   updateTaskColumn: PropTypes.func,
+
 
     
   }

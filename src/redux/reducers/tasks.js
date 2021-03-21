@@ -29,14 +29,8 @@ export default function tasks(state = initialState, action) {
             return {...state, filtered: state.items.filter(it => it.text.indexOf(action.payload.filter) !== -1)}
         }
         case "REMOVE_TASK": {
-            const oldItems = state.items
-            const notDeleted = oldItems.filter(task => task.id !== action.payload.id)
-            const newstate = {}
-            newstate.items = notDeleted
-            return {
-                ...state,
-                items: notDeleted
-            }
+
+            return {items: state.items.filter(item => item.id !== action.payload.id)}
 
         }
         default: {

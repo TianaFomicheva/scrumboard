@@ -29,11 +29,12 @@ function AddForm({ categoryId }) {
         dispatch(addTask(obj))
         setText('')
         toggleVisibility(e)
+        
+        
 
 
     }
     const handleText = (e) => {
-        // setDisableDruggable(true)
         setText(e.target.value)
     }
 
@@ -54,6 +55,8 @@ AddForm.propTypes = {
     onSubmit: PropTypes.func,
     categoryId: PropTypes.number,
     setDisableDruggable: PropTypes.func,
+    todos: PropTypes.array,
+   onCancelFilter: PropTypes.func,
 
 }
 export default AddForm
