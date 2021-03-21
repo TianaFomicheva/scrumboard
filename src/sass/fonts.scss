@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Proxima Nova Regular';
+    font-display: swap;
+    src: url('../fonts/ProximaNova-Regular.eot');
+    src: url('../fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/ProximaNova-Regular.woff') format('woff'),
+    url('../fonts/ProximaNova-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @mixin regular {
+        font-family: 'Proxima Nova Regular', sans-serif;
+        
+    }   

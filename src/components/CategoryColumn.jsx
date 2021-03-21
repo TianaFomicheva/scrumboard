@@ -32,9 +32,9 @@ function CategoryColumn({ title, categoryId, todos, count }) {
     []
   )
   return (
-    <div ref={drop}>
+    <div ref={drop} className="category__wrapper">
 
-      <div className="category-title"> {title} - {count}</div>
+      <div className="category__title"> {title} - {count}</div>
       <ul className="task-item">
         {todos && todos.map((todo) =>
           <div id={'item' + todo.id} key={todo.id}><TodoItem id={todo.id} key={todo.id} text={todo.text} /></div>

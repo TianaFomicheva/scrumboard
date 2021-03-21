@@ -13,7 +13,7 @@ function TodoItem({ text, id }) {
     const [visibleEdit, setVisibleEdit] = React.useState(false)
 
     const handleVisibleEdit = (e) => {
-       
+
         e.preventDefault()
         setVisibleEdit(!visibleEdit)
     }
@@ -22,34 +22,39 @@ function TodoItem({ text, id }) {
         dispatch(removeTask(id))
 
     }
-    const [{ isDragging}, drag] = useDrag(() => ({
+    const [{ isDragging }, drag] = useDrag(() => ({
         type: constants.CARD,
-        item: {type: constants.CARD, itemId: id, itemText: text},
+        item: { type: constants.CARD, itemId: id, itemText: text },
         collect: (monitor) => ({
-          isDragging: monitor.isDragging(),
-          item: monitor.getItem()          
-        })                 
-      }))
+            isDragging: monitor.isDragging(),
+            item: monitor.getItem()
+        })
+    }))
 
-   const handleEditItem = obj=>{
-    dispatch(editTask(obj))
-    setVisibleEdit(!visibleEdit)
-   }   
-      
+    const handleEditItem = obj => {
+        dispatch(editTask(obj))
+        setVisibleEdit(!visibleEdit)
+    }
 
-return (
-<div ref={drag}>
-    <div className="task-card" style={{
-        opacity: isDragging ? 0.5 : 1}} >
-            <p>{text} </p><div onClick={handleVisibleEdit} className="action-button">&#9998;</div><div onClick={handleDelete} className="action-button">&#10006;</div>
-            <EditItem visibleEdit={visibleEdit} text={text} id={id} editItem={handleEditItem}/>
-        </div>
+
+    return (
+        <div ref={drag}>
+            <div className="task-card" style={{
+                opacity: isDragging ? 0.5 : 1
+            }} >
+                <p>{text} </p>
+                <div className="action__field">
+                    <div onClick={handleVisibleEdit} className="action__button">&#9998;</div>
+                    <div onClick={handleDelete} className="action__button">&#10006;</div>
+                </div>
+                <EditItem visibleEdit={visibleEdit} text={text} id={id} editItem={handleEditItem} />
+            </div>
 
         </div>)
-    
-    
 
-    
+
+
+
 }
 TodoItem.propTypes = {
     text: PropTypes.string,
@@ -58,9 +63,6 @@ TodoItem.propTypes = {
 
 }
 
-TodoItem.defaultProps = {
-    text: ''
 
-}
 export default TodoItem
 

@@ -14,14 +14,16 @@ function TodoList() {
     const handleFiltered = (filter) => {
         dispatch(filterTasks(filter))
     }
-    
+
 
     return (
         <div>
             <Filter onFiltered={handleFiltered} />
-            <div className="content">
+            <div className="container">
+                <div className="content">
 
-                {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} todos={(todos.filter(t => t.categoryId == index))} count={(todos.filter(t => t.categoryId == index)).length}  />)}
+                    {categoryNames.map((categoryName, index) => <CategoryColumn key={index} categoryId={index} title={categoryName} todos={(todos.filter(t => t.categoryId == index))} count={(todos.filter(t => t.categoryId == index)).length} />)}
+                </div>
             </div>
         </div>
     )

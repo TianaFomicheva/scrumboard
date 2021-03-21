@@ -48,8 +48,8 @@ function AddForm({ categoryId }) {
         <form className="add-form" onSubmit={handleSubmit} onKeyDown={(e) => checkKeyDown(e)}>
             <Button onClick={toggleVisibility} />
             {visiblePopup &&
-                (<div><TextField  value={text} onChange={handleText} />
-                    <button type="submit">Добавить</button></div>)}
+                (<div><TextField value={text} onChange={handleText} />
+                    <button className="button" type="submit">Добавить</button></div>)}
 
 
         </form>

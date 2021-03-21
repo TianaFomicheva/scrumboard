@@ -1,9 +1,24 @@
+@import 'fonts.scss'
+body
+    +regular
+    color: #1d1d1d
 .container
-    width: 90%
+    width: 95%
     margin: 0 auto
-
-
-.task-card, .category-title, .filter-form
+.button
+    cursor: pointer
+    background-color: #ebedf7
+    outline: none
+    border: none
+    color: #111e63
+.button, input
+    padding: 15px
+    margin: 5px
+    &__add
+        &-item
+            width: 40px
+            height: 40px
+.task-card, .category__title, .filter-form
     border: 1px  solid #ddd
     margin: 20px
     padding: 20px
@@ -22,19 +37,36 @@
     transition: border-color .4s ease,box-shadow .4s ease,-webkit-box-shadow .4s ease,-moz-box-shadow .4s ease
     &-board
         background-color:#807272 
-.category-title
-    font-size: 16px     
-    font-weight: bold       
-.task-item
+.category
+    &__wrapper
+        min-height: calc(90vh - 40px)
+        width: 18%
+    &__title
+        font-size: 16px     
+        font-weight: bold 
+        min-height: 36px
+        color: #111e63     
+.task
+    &-item
         padding-left: 0
+    &-card
+        & p
+            margin-block-start: 0    
 .content
     display: flex
-    justify-content: space-around
-.action-button
-    display: inline-block
-    width: 50%  
+    justify-content: space-between
+.action
+    &__field
+        display: flex
+        justify-content: space-between 
+    &__button
+        cursor: pointer    
 .filter
     margin: auto 0 auto auto
     &-form
         display: flex
         justify-content: revert
+.mdc-text-field
+    &__input
+        font-size: small   
+        margin-left: 0     

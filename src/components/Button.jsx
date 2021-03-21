@@ -5,7 +5,7 @@ function Button({onClick}) {
 
     
     return (
-        <button  onClick = {onClick} >
+        <button className="button button__add-item"  onClick = {onClick} >
             +
         </button>
     )
