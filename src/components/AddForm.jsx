@@ -4,14 +4,17 @@ import Button from './Button'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { addTask } from '../redux/actions/tasks'
+import { filterTasks } from '../redux/actions/tasks'
+
 
 function AddForm({ categoryId }) {
+    const dispatch = useDispatch()
     const [visiblePopup, setVisiblePopup] = React.useState(false)
     const toggleVisibility = (e) => {
         e.preventDefault()
         setVisiblePopup(!visiblePopup)
     }
-    const dispatch = useDispatch()
+   
     const [text, setText] = React.useState('')
     const checkKeyDown = (e) => {
         if (e.code === 'Enter') {
@@ -29,6 +32,7 @@ function AddForm({ categoryId }) {
         dispatch(addTask(obj))
         setText('')
         toggleVisibility(e)
+        dispatch(filterTasks(''))
         
         
 
