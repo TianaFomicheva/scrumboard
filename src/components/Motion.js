@@ -1,4 +1,4 @@
-let taskPosition = [10, 0]
+let taskPosition = [0, 0]
 let observer = null
 
 function emitChange() {
@@ -11,10 +11,5 @@ export function observe(o) {
   }
 
   observer = o
-  emitChange()
-}
-
-export function moveTask(toX, toY) {
-    taskPosition = [toX, toY]
   emitChange()
 }

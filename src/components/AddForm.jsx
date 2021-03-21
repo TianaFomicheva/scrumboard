@@ -14,7 +14,7 @@ function AddForm({ categoryId }) {
         e.preventDefault()
         setVisiblePopup(!visiblePopup)
     }
-   
+
     const [text, setText] = React.useState('')
     const checkKeyDown = (e) => {
         if (e.code === 'Enter') {
@@ -33,11 +33,9 @@ function AddForm({ categoryId }) {
         setText('')
         toggleVisibility(e)
         dispatch(filterTasks(''))
-        
-        
-
-
     }
+
+
     const handleText = (e) => {
         setText(e.target.value)
     }
@@ -58,9 +56,7 @@ function AddForm({ categoryId }) {
 AddForm.propTypes = {
     onSubmit: PropTypes.func,
     categoryId: PropTypes.number,
-    setDisableDruggable: PropTypes.func,
-    todos: PropTypes.array,
-   onCancelFilter: PropTypes.func,
+
 
 }
 export default AddForm

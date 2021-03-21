@@ -28,19 +28,16 @@ function Filter({ onFiltered }) {
 
     return (
         <div className="container">
-        <form className="filter-form" onSubmit={onFilter} onKeyDown={(e) => checkKeyDown(e)}>
-            <div className="filter"><TextField value={textFilter} onChange={handleText} />
-                <button className="button" type="submit" >Фильтр</button>
-                <button className="button"  onClick={clearFilter} >Сбросить</button>
-            </div>
-        </form>
+            <form className="filter-form" onSubmit={onFilter} onKeyDown={(e) => checkKeyDown(e)}>
+                <div className="filter"><TextField value={textFilter} onChange={handleText} />
+                    <button className="button" type="submit" >Фильтр</button>
+                    <button className="button" onClick={clearFilter} >Сбросить</button>
+                </div>
+            </form>
         </div>
     )
 }
 Filter.propTypes = {
     onFiltered: PropTypes.func,
-    setFiltered: PropTypes.func,
-
-
 }
 export default Filter

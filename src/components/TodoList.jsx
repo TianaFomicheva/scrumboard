@@ -4,7 +4,6 @@ import Filter from './Filter'
 import { useSelector } from 'react-redux'
 import { filterTasks } from '../redux/actions/tasks'
 import { useDispatch } from 'react-redux'
-import PropTypes from 'prop-types'
 
 function TodoList() {
     const dispatch = useDispatch()
@@ -30,8 +29,6 @@ function TodoList() {
 }
 
 
-TodoList.propTypes = {
-    filtered: PropTypes.array,
-}
+
 export default TodoList
 

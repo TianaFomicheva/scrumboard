@@ -26,7 +26,6 @@ function CategoryColumn({ title, categoryId, todos, count }) {
           categoryId
         }
         dispatch(editTaskCategory(obj))
-
       }
     }),
     []
