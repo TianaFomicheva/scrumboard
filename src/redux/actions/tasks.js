@@ -34,5 +34,10 @@ export const filterTasks = filter => {
       }
     }
   }
+export const clearFilterTasks = () => {
+    return {
+      type: "CLEAR_FILTER_TASKS",
+    }
+  }
 
 

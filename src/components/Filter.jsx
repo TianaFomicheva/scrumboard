@@ -2,7 +2,7 @@ import React from 'react'
 import { TextField } from '@rmwc/textfield'
 import PropTypes from 'prop-types'
 
-function Filter({ onFiltered }) {
+function Filter({ onFiltered, clearFiltered }) {
 
     const [textFilter, setTextFilter] = React.useState('')
 
@@ -20,7 +20,7 @@ function Filter({ onFiltered }) {
     const clearFilter = (e) => {
         e.preventDefault()
         setTextFilter('')
-        onFiltered('')
+        clearFiltered()
     }
     function handleText(e) {
         return setTextFilter(e.target.value)
@@ -39,5 +39,6 @@ function Filter({ onFiltered }) {
 }
 Filter.propTypes = {
     onFiltered: PropTypes.func,
+    clearFiltered: PropTypes.func,
 }
 export default Filter

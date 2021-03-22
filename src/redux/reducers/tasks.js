@@ -28,6 +28,9 @@ export default function tasks(state = initialState, action) {
         case "FILTER_TASKS": {
             return {...state, filtered: state.items.filter(it => it.text.indexOf(action.payload.filter) !== -1)}
         }
+        case "CLEAR_FILTER_TASKS": {
+            return {items: state.items}
+        }
         case "REMOVE_TASK": {
 
             return {items: state.items.filter(item => item.id !== action.payload.id)}

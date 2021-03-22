@@ -4,7 +4,7 @@ import Button from './Button'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { addTask } from '../redux/actions/tasks'
-import { filterTasks } from '../redux/actions/tasks'
+import { clearFilterTasks } from '../redux/actions/tasks'
 
 
 function AddForm({ categoryId }) {
@@ -32,7 +32,7 @@ function AddForm({ categoryId }) {
         dispatch(addTask(obj))
         setText('')
         toggleVisibility(e)
-        dispatch(filterTasks(''))
+        dispatch(clearFilterTasks())
     }
 
 

@@ -28,7 +28,7 @@ function EditItem({ id, text, visibleEdit, editItem }) {
         <form className="add-form" onSubmit={submitEdit} onKeyDown={(e) => checkKeyDown(e)}>
             {visibleEdit &&
                 (<div><TextField value={newText} onChange={handleText} />
-                    <button type="submit">Сохранить</button>
+                    <button className="button" type="submit">Сохранить</button>
                 </div>)}
         </form>
     )

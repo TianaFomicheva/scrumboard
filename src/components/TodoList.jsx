@@ -2,7 +2,7 @@ import React from 'react'
 import CategoryColumn from './CategoryColumn'
 import Filter from './Filter'
 import { useSelector } from 'react-redux'
-import { filterTasks } from '../redux/actions/tasks'
+import { filterTasks, clearFilterTasks } from '../redux/actions/tasks'
 import { useDispatch } from 'react-redux'
 
 function TodoList() {
@@ -13,11 +13,14 @@ function TodoList() {
     const handleFiltered = (filter) => {
         dispatch(filterTasks(filter))
     }
+    const handleClearFiltered = () => {
+        dispatch(clearFilterTasks())
+    }
 
 
     return (
         <div>
-            <Filter onFiltered={handleFiltered} />
+            <Filter onFiltered={handleFiltered} clearFiltered={handleClearFiltered}/>
             <div className="container">
                 <div className="content">
 
