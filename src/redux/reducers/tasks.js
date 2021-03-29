@@ -19,7 +19,7 @@ export default function tasks(state = initialState, action) {
         }
         case "EDIT_TASK": {
 
-            return { items: state.items.map(item=> item.id === action.payload.id ? {...item, text: action.payload.text } : item), filtered: state.filtered.map(item=> item.id === action.payload.id ? {...item, text: action.payload.text } : item)}
+            return { items: state.items.map(item=> item.id === action.payload.id ? {...item, text: action.payload.text } : item), filtered: state.filtered ? state.filtered.map(item=> item.id === action.payload.id ? {...item, text: action.payload.text } : item) : false}
         }
         case "EDIT_TASK_CATEGORY": {
             
@@ -33,7 +33,7 @@ export default function tasks(state = initialState, action) {
         }
         case "REMOVE_TASK": {
 
-            return {items: state.items.filter(item => item.id !== action.payload.id), filtered:  state.filtered.filter(item => item.id !== action.payload.id)}
+            return {items: state.items.filter(item => item.id !== action.payload.id), filtered:  (state.filtered) ? state.filtered.filter(item => item.id !== action.payload.id): false}
 
         }
         default: {
